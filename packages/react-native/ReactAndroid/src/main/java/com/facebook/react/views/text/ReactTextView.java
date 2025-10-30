@@ -571,7 +571,16 @@ public class ReactTextView extends AppCompatTextView implements ReactCompoundVie
   @Override
   public void onAttachedToWindow() {
     super.onAttachedToWindow();
-    setTextIsSelectable(mTextIsSelectable);
+    
+    // This is a workaround to ensure the text becomes selectable as it doesn't work if we call
+    // `setTextIsSelectable(true)` directly when setTextIsSelectable was already true.
+    if (mTextIsSelectable) {
+      setTextIsSelectable(false);
+      setTextIsSelectable(true);
+    } else {
+      setTextIsSelectable(false);
+    }
+    // end 
     if (mContainsImages && getText() instanceof Spanned) {
       Spanned text = (Spanned) getText();
       TextInlineImageSpan[] spans = text.getSpans(0, text.length(), TextInlineImageSpan.class);
