@@ -1,8 +1,9 @@
 {
   "name": "@react-native/monorepo",
   "private": true,
-  "version": "1000.0.0",
+  "version": "0.79.6-custom",
   "license": "MIT",
+  "react-native": "github.com/decisionnguyen/react-native"
   "packageManager": "yarn@1.22.22",
   "scripts": {
     "android": "yarn --cwd packages/rn-tester android",
